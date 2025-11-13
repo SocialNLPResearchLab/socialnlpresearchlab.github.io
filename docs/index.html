@@ -340,18 +340,20 @@ layout: none
 </div>
 
 <script>
-  const COUNTER_KEY = "socialnlp-lab";
+  const WORKSPACE = "socialnlp-lab";  // Unique ID for your site
+  const COUNTER = "visitors";         // Counter name
 
-  fetch(`https://api.countapi.xyz/hit/${COUNTER_KEY}/visits?nocache=${Math.random()}`)
-    .then(response => response.json())
+  fetch(`https://counterapi.dev/api/v1/${WORKSPACE}/${COUNTER}/increment`)
+    .then(res => res.json())
     .then(data => {
-      document.getElementById("count").textContent = data.value.toLocaleString();
+      document.getElementById("count").textContent = data.count.toLocaleString();
     })
-    .catch(error => {
-      console.error("Visitor counter error:", error);
+    .catch(err => {
+      console.error("Visitor counter error:", err);
       document.getElementById("count").textContent = "N/A";
     });
 </script>
+
 
     
   </div>
