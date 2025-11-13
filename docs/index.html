@@ -332,6 +332,24 @@ layout: none
         }
       </style>
     </section>
+
+<div id="visitor-counter" 
+     style="text-align:center; margin-top:1rem; font-family:'Nunito Sans',sans-serif; color:#5b3a3a;">
+  <span style="font-weight:600; color:#C1272D;">Visitors:</span>
+  <span id="count" style="font-weight:700;"></span>
+</div>
+
+<script>
+  // Your unique counter key (change "socialnlp-lab" to something unique if you want)
+  const COUNTER_KEY = "socialnlp-lab";
+
+  fetch(`https://api.countapi.xyz/hit/${COUNTER_KEY}/visits`)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("count").textContent = data.value;
+    });
+</script>
+    
   </div>
 
   <!-- ===== RIGHT COLUMN (Highlights) ===== -->
