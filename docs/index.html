@@ -333,40 +333,6 @@ layout: none
       </style>
     </section>
 
-<!-- ===== Visitor Counter ===== -->
-<!-- ===== Visitor Counter ===== -->
-<div id="visitor-counter" 
-     style="text-align:center; margin-top:1rem; font-family:'Nunito Sans',sans-serif; color:#5b3a3a;">
-  <span style="font-weight:600; color:#C1272D;">Visitors:</span>
-  <span id="count" style="font-weight:700;"></span>
-</div>
-
-<!-- CounterAPI Browser Library -->
-<script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-
-    // Create a CounterAPI instance
-    const counter = new Counter({ 
-      workspace: 'socialnlp-lab'   // your unique global counter workspace
-    });
-
-    const span = document.getElementById('count');
-
-    // Increment the counter every time the page loads
-    counter.up('page-views')
-      .then(result => {
-        // result.value = current total count
-        span.textContent = result.value.toLocaleString();
-      })
-      .catch(error => {
-        console.error("Visitor counter error:", error);
-        span.textContent = "N/A";
-      });
-  });
-</script>
-
     
   </div>
 
