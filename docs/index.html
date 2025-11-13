@@ -334,6 +334,7 @@ layout: none
     </section>
 
 <!-- ===== Visitor Counter ===== -->
+<!-- ===== Visitor Counter ===== -->
 <div id="visitor-counter" 
      style="text-align:center; margin-top:1rem; font-family:'Nunito Sans',sans-serif; color:#5b3a3a;">
   <span style="font-weight:600; color:#C1272D;">Visitors:</span>
@@ -344,20 +345,24 @@ layout: none
 <script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Create a counter instance with your workspace name
-    const counter = new Counter({ workspace: 'socialnlp-lab' });
+  document.addEventListener('DOMContentLoaded', function () {
 
-    const counterElement = document.getElementById('count');
+    // Create a CounterAPI instance
+    const counter = new Counter({ 
+      workspace: 'socialnlp-lab'   // your unique global counter workspace
+    });
 
-    // Increment the 'page-views' counter and update the UI
+    const span = document.getElementById('count');
+
+    // Increment the counter every time the page loads
     counter.up('page-views')
-      .then(function (result) {
-        counterElement.textContent = result.value.toLocaleString();
+      .then(result => {
+        // result.value = current total count
+        span.textContent = result.value.toLocaleString();
       })
-      .catch(function (error) {
-        console.error('Visitor counter error:', error);
-        counterElement.textContent = 'N/A';
+      .catch(error => {
+        console.error("Visitor counter error:", error);
+        span.textContent = "N/A";
       });
   });
 </script>
