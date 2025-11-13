@@ -340,15 +340,19 @@ layout: none
 </div>
 
 <script>
-  // Your unique counter key (change "socialnlp-lab" to something unique if you want)
   const COUNTER_KEY = "socialnlp-lab";
 
-  fetch(`https://api.countapi.xyz/hit/${COUNTER_KEY}/visits`)
-    .then(res => res.json())
+  fetch(`https://api.countapi.xyz/hit/${COUNTER_KEY}/visits?nocache=${Math.random()}`)
+    .then(response => response.json())
     .then(data => {
-      document.getElementById("count").textContent = data.value;
+      document.getElementById("count").textContent = data.value.toLocaleString();
+    })
+    .catch(error => {
+      console.error("Visitor counter error:", error);
+      document.getElementById("count").textContent = "N/A";
     });
 </script>
+
     
   </div>
 
