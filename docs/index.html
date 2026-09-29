@@ -274,67 +274,140 @@ layout: none
 
 
 
-<!-- ===== Hero Section (Image + Highlights Side by Side) ===== -->
-<section style="display:flex; justify-content:center; align-items:flex-start; gap:2rem; margin:2rem auto; max-width:1200px; flex-wrap:wrap;">
+<!-- ===== LEFT COLUMN (Two Image Slideshows) ===== -->
+<div style="flex:1; min-width:500px; position:relative;">
 
-  <!-- ===== LEFT COLUMN (Image Slideshow + Title) ===== -->
-  <div style="flex:1; min-width:500px; position:relative;">
-    <section id="hero" style="position: relative; overflow: hidden; color: #fff; text-align: center; height: 12cm; border-radius:10px;">
-      <div class="hero-slideshow">
-        <div class="hero-slide" style="background-image: url('G1.jpg');"></div>
-        <div class="hero-slide" style="background-image: url('G2.jpg');"></div>
-        <div class="hero-slide" style="background-image: url('G3.jpg');"></div>
-        <div class="hero-slide" style="background-image: url('G4.JPG');"></div>
-      </div>
+  <!-- ===== FIRST SLIDESHOW ===== -->
+  <section id="hero" style="
+    position:relative;
+    overflow:hidden;
+    color:#fff;
+    text-align:center;
+    height:12cm;
+    border-radius:10px;
+  ">
+    <div class="hero-slideshow">
+      <div class="hero-slide" style="background-image:url('G1.jpg');"></div>
+      <div class="hero-slide" style="background-image:url('G2.jpg');"></div>
+      <div class="hero-slide" style="background-image:url('G3.jpg');"></div>
+      <div class="hero-slide" style="background-image:url('G4.JPG');"></div>
+    </div>
 
-      <div class="hero-overlay"></div>
+    <div class="hero-overlay"></div>
 
-      <div style="position: relative; top: -3rem; z-index: 2;">
-        <h1>SocialNLP Research Lab</h1>
-      </div>
+    <div style="position:relative; top:-3rem; z-index:2;">
+      <h1>SocialNLP Research Lab</h1>
+    </div>
+  </section>
 
-      <style>
-        .hero-slideshow {
-          position: absolute;
-          top: 0; left: 0;
-          width: 100%; height: 100%;
-          overflow: hidden;
-          z-index: 0;
-        }
-        .hero-slide {
-          position: absolute;
-          top: 0; left: 0;
-          width: 100%; height: 100%;
-          background-size: cover;
-          background-position: center;
-          opacity: 0;
-          animation: heroFade 24s infinite;
-        }
-        .hero-slide:nth-child(1) { animation-delay: 0s; }
-        .hero-slide:nth-child(2) { animation-delay: 6s; }
-        .hero-slide:nth-child(3) { animation-delay: 12s; }
-        .hero-slide:nth-child(4) { animation-delay: 18s; }
 
-        @keyframes heroFade {
-          0% { opacity: 0; }
-          10% { opacity: 1; }
-          25% { opacity: 1; }
-          35% { opacity: 0; }
-          100% { opacity: 0; }
-        }
+  <!-- ===== GAP BETWEEN SLIDESHOWS ===== -->
+  <div style="height:2rem;"></div>
 
-        .hero-overlay {
-          position: absolute;
-          top: 0; left: 0;
-          width: 100%; height: 100%;
-          background: rgba(0, 0, 0, 0.45);
-          z-index: 1;
-        }
-      </style>
-    </section>
 
-    
-  </div>
+  <!-- ===== SECOND SLIDESHOW — NO TEXT ===== -->
+  <section style="
+    position:relative;
+    overflow:hidden;
+    height:8cm;
+    border-radius:10px;
+  ">
+    <div class="second-slideshow">
+      <div class="second-slide" style="background-image:url('G1.jpg');"></div>
+      <div class="second-slide" style="background-image:url('G2.jpg');"></div>
+      <div class="second-slide" style="background-image:url('G3.jpg');"></div>
+      <div class="second-slide" style="background-image:url('G4.jpg');"></div>
+    </div>
+  </section>
+
+
+  <style>
+    /* ===== FIRST SLIDESHOW ===== */
+
+    .hero-slideshow {
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      overflow:hidden;
+      z-index:0;
+    }
+
+    .hero-slide {
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background-size:cover;
+      background-position:center;
+      opacity:0;
+      animation:heroFade 24s infinite;
+    }
+
+    .hero-slide:nth-child(1) { animation-delay:0s; }
+    .hero-slide:nth-child(2) { animation-delay:6s; }
+    .hero-slide:nth-child(3) { animation-delay:12s; }
+    .hero-slide:nth-child(4) { animation-delay:18s; }
+
+    @keyframes heroFade {
+      0%   { opacity:0; }
+      10%  { opacity:1; }
+      25%  { opacity:1; }
+      35%  { opacity:0; }
+      100% { opacity:0; }
+    }
+
+    .hero-overlay {
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.45);
+      z-index:1;
+    }
+
+
+    /* ===== SECOND SLIDESHOW ===== */
+
+    .second-slideshow {
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      overflow:hidden;
+    }
+
+    .second-slide {
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background-size:cover;
+      background-position:center;
+      opacity:0;
+      animation:secondFade 24s infinite;
+    }
+
+    .second-slide:nth-child(1) { animation-delay:0s; }
+    .second-slide:nth-child(2) { animation-delay:6s; }
+    .second-slide:nth-child(3) { animation-delay:12s; }
+    .second-slide:nth-child(4) { animation-delay:18s; }
+
+    @keyframes secondFade {
+      0%   { opacity:0; }
+      10%  { opacity:1; }
+      25%  { opacity:1; }
+      35%  { opacity:0; }
+      100% { opacity:0; }
+    }
+  </style>
+
+</div>
 
  <!-- ===== RIGHT COLUMN (Highlights) ===== -->
 <div style="flex:1; min-width:400px;">
