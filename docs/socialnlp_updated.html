@@ -1,0 +1,2001 @@
+---
+layout: none
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>SocialNLP Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="Research lab in Natural Language Processing, LLM Alignment, NLP for Social Good, Trust and Safety" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --light: #f4f5f7;
+      --dark: #0f172a;
+      --accent: #2563eb;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ===== Navbar ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.25rem;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .brand span.small {
+      font-size: 0.7rem;
+      color: var(--muted);
+      display: block;
+      line-height: 1.1;
+    }
+
+    nav a {
+      margin-left: 1rem;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3.5rem 1.25rem 2.5rem;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 35rem;
+    }
+
+    .hero .buttons {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.6rem 1.1rem;
+      border-radius: 999px;
+      border: none;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn.secondary {
+      background: #fff;
+      border: 1px solid #d1d5db;
+      color: var(--text);
+    }
+
+    .hero-card {
+      background: var(--light);
+      border: 1px solid #e5e7eb;
+      border-radius: 1.2rem;
+      padding: 1.25rem 1.25rem 0.25rem;
+    }
+
+    .hero-card h3 {
+      margin-top: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 0.2rem 0.75rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 1rem;
+    }
+
+    /* ===== Sections ===== */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 0;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-title small {
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 400;
+    }
+
+    /* ===== Cards ===== */
+    .grid {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: var(--radius);
+      padding: 1.25rem 1.25rem 1rem;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    /* ===== People ===== */
+    .people-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .person {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 0.9rem 1rem;
+    }
+
+    .person h4 {
+      margin: 0 0 0.25rem;
+    }
+
+    .role {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    /* ===== Publications ===== */
+    .pub-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .pub-item {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 1rem 1.1rem;
+    }
+
+    .pub-item .venue {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      margin-top: 3rem;
+      background: #0f172a;
+      color: rgba(255, 255, 255, 0.9);
+      padding: 2.5rem 1.25rem 3rem;
+    }
+
+    footer .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    footer a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 880px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        display: none;
+      }
+
+      header {
+        position: static;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===== Navbar ===== -->
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <span>SocialNLP Research Lab</span><br>
+        <span class="small">
+          School of Computing, Macquarie University, Sydney, Australia —
+          part of the
+          <a href="https://macquarienlp.github.io/" target="_blank"
+            style="color:#C1272D; text-decoration:none; font-weight:600;">
+            Macquarie NLP Lab
+          </a>
+        </span>
+      </div>
+      <nav>
+        <a href="#research">Research</a>
+        <a href="#people">People</a>
+        <!-- <a href="#projects">Projects</a> -->
+        <a href="#publications">Publications</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Last Updated Footer Line ===== -->
+  <div id="last-updated" style="text-align:center; 
+            font-family:'Nunito Sans',sans-serif; 
+            font-size:0.9rem; 
+            color:#5b3a3a; 
+            margin-top:4px;">
+    Last updated:
+    <span style="color:#C1272D; font-weight:600;">
+      {{ site.time | date: "%d %b %Y" }}
+    </span>
+  </div>
+
+
+
+  <!-- ===== Hero Section (Image + Highlights Side by Side) ===== -->
+  <section style="
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap:2rem;
+  margin:2rem auto;
+  max-width:1200px;
+  flex-wrap:wrap;
+">
+
+    <!-- ===== LEFT COLUMN (Image Slideshow + Title) ===== -->
+    <div style="
+    flex:1;
+    min-width:500px;
+    position:relative;
+  ">
+
+      <section id="hero" style="
+      position:relative;
+      overflow:hidden;
+      color:#fff;
+      text-align:center;
+      height:12cm;
+      border-radius:10px;
+    ">
+
+        <div class="hero-slideshow">
+
+          <div class="hero-slide" style="background-image:url('G1.jpg');">
+          </div>
+
+          <div class="hero-slide" style="background-image:url('G2.jpg');">
+          </div>
+
+          <div class="hero-slide" style="background-image:url('G3.jpg');">
+          </div>
+
+          <div class="hero-slide" style="background-image:url('G4.JPG');">
+          </div>
+
+        </div>
+
+        <div class="hero-overlay"></div>
+
+        <div style="
+        position:relative;
+        top:-3rem;
+        z-index:2;
+      ">
+          <h1>SocialNLP Research Lab</h1>
+        </div>
+
+      </section>
+
+    </div>
+
+
+    <!-- ===== RIGHT COLUMN (Highlights) ===== -->
+    <div style="
+    flex:1;
+    min-width:400px;
+  ">
+
+      <div class="hero-card" style="
+      background:#ffffff;
+      border-radius:18px;
+      padding:1.2rem 1.4rem;
+      box-shadow:0 3px 8px rgba(0,0,0,0.08);
+      border-left:5px solid #C1272D;
+    ">
+
+        <h3 style="
+        color:#C1272D;
+        font-family:'Poppins',sans-serif;
+      ">
+          Highlights
+        </h3>
+
+        <p class="muted" style="
+        color:#5b3a3a;
+        font-family:'Nunito Sans',sans-serif;
+        font-size:0.9rem;
+      ">
+          Recent achievements and recognitions from our group.
+        </p>
+
+        <ul style="
+        list-style:none;
+        padding-left:0;
+        margin:0;
+        color:#4b1d26;
+        font-family:'Nunito Sans',sans-serif;
+        font-size:0.9rem;
+      ">
+
+          <li style="margin-bottom:0.6rem;">
+            <strong style="color:#C1272D;">Nov 2026 —</strong>
+            🌟 Usman Naseem selected to present at the AAAI 2027 New Faculty Highlights Program, showcasing our group’s
+            research on AI Safety and Alignment.
+          </li>
+
+<li style="margin-bottom:0.6rem;">
+            <strong style="color:#C1272D;">Sept 2026 —</strong>
+            🌟 Usman Naseem awarded the BESC Rising Star 2026 award for his work on AI Alignment and AI/NLP for Social
+            Good.
+          </li>
+
+<li style="margin-bottom:0.6rem;">
+            <strong style="color:#C1272D;">Aug 2026 —</strong>
+            🏆 <b>11 papers</b> (6 Mains, 5 Findings) at <b>EMNLP 2026</b>.
+          </li>
+
+<li style="margin-bottom:0.6rem;">
+            <strong style="color:#C1272D;">Jul 2026 —</strong>
+            🏆 <b>POLAR: A Benchmark for Multilingual, Multicultural, and Multi-Event Online Polarization</b>
+            received the <b>ACL 2026 Best Paper Award @ EEUC Workshop</b>
+            and the <b>SemEval 2026 Task 9 Best Task Paper Award (Runner-Up)</b>
+            at <b>ACL 2026, San Diego, USA</b>.
+          </li>
+
+<li style="margin-bottom:0.6rem;">
+            <strong style="color:#C1272D;">Jul 2026 —</strong>
+            🎤 Usman Naseem delivered a <b>Keynote Talk</b> at the
+            <b>EEUCA Workshop, ACL 2026</b> on
+            <i>Political Event Understanding in Large Language Models</i>
+            in <b>San Diego, USA</b>.
+          </li>
+
+<li style="margin-bottom:0.6rem;">
+            <strong style="color:#C1272D;">Jun 2026 —</strong>
+            🎉 <b>Gautam Kashyap</b> selected as
+            <b>ML Researcher @ Algoverse Research</b>
+            for a <b>3-month period</b>.
+          </li>
+
+<li style="margin-bottom:0.6rem;">
+            <strong style="color:#C1272D;">Apr 2026 —</strong>
+            🏆 <b>1 paper</b> at <b>IJCAI 2026</b>.
+          </li>
+
+<li style="margin-bottom:0.6rem;">
+            <strong style="color:#C1272D;">Apr 2026 —</strong>
+            🏆 <b>13 papers</b> (5 Mains, 7 Findings, 1 Industry)
+            at <b>ACL 2026</b>.
+          </li>
+        </ul>
+        <p style="margin:1rem 0 0; color:#5b3a3a; font-family:'Nunito Sans',sans-serif; font-size:0.9rem;">
+          For more news and updates from our lab, please visit our
+          <a href="#news" style="color:#C1272D; font-weight:700; text-decoration:underline;">News section</a>.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ===== HERO SLIDESHOW CSS ===== -->
+  <style>
+    .hero-slideshow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .hero-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      animation: heroFade 24s infinite;
+    }
+
+    .hero-slide:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    .hero-slide:nth-child(2) {
+      animation-delay: 6s;
+    }
+
+    .hero-slide:nth-child(3) {
+      animation-delay: 12s;
+    }
+
+    .hero-slide:nth-child(4) {
+      animation-delay: 18s;
+    }
+
+    @keyframes heroFade {
+
+      0% {
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      25% {
+        opacity: 1;
+      }
+
+      35% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 0;
+      }
+
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 1;
+    }
+  </style>
+
+  </section> <!-- ✅ CLOSE the FLEX CONTAINER properly before Vision section -->
+
+  <!-- ===== Research Vision BELOW (Independent Section) ===== -->
+  <section id="vision" style="background:#fffafc; padding:2rem 1rem;">
+    <div
+      style="max-width: 850px; margin: 0 auto; background:#ffffff; border-radius:16px; padding:1.8rem 2rem; box-shadow:0 4px 10px rgba(0,0,0,0.08); border-left:5px solid #C1272D; text-align:center;">
+      <h3 style="color:#C1272D; font-family:'Poppins',sans-serif; font-size:1.5rem; margin-bottom:0.9rem;">
+        Research Vision
+      </h3>
+      <p
+        style="font-style: italic; color:#5b3a3a; font-size:1.05rem; line-height:1.6; font-family:'Nunito Sans',sans-serif; margin:0;">
+        At <b style="color:#C1272D;">SocialNLP</b>, we explore how language models can understand, reason, and act in
+        ways that align with human values and social contexts — advancing research at the intersection of
+        <b style="color:#C1272D;">AI Alignment</b>, <b style="color:#C1272D;">Social Good</b>, and <b
+          style="color:#C1272D;">Online Trust & Safety</b>.
+      </p>
+    </div>
+  </section>
+
+
+
+  <!-- ===== Research Areas ===== -->
+  <section id="research" style="background: linear-gradient(180deg, #fff6f7 0%, #fdfbff 50%, #f8fff9 100%);">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Nunito+Sans:wght@400;600&display=swap"
+      rel="stylesheet">
+
+    <h2 class="section-title"
+      style="text-align:center; font-size:1.9rem; color:#C1272D; margin-bottom:2rem; font-family:'Poppins', sans-serif;">
+      Research Areas
+    </h2>
+
+    <style>
+      .research-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 1.5rem;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 1rem 2rem;
+      }
+
+      .research-card {
+        background: #ffffff;
+        border-radius: 22px;
+        padding: 1.8rem 1.5rem;
+        color: #4b1d26;
+        border: 1px solid #f0f0f0;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        font-family: 'Nunito Sans', sans-serif;
+      }
+
+      .research-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 8px 16px rgba(193, 39, 45, 0.15);
+      }
+
+      .research-card h3 {
+        margin-top: 0;
+        color: #C1272D;
+        font-size: 1.35rem;
+        font-family: 'Poppins', sans-serif;
+        letter-spacing: 0.3px;
+      }
+
+      .research-card p {
+        color: #5b3a3a;
+        font-size: 0.95rem;
+        line-height: 1.55;
+        margin-top: 0.5rem;
+      }
+
+      .research-sublist {
+        margin-top: 0.8rem;
+        padding-left: 1.2rem;
+        font-size: 0.93rem;
+        color: #5b3a3a;
+        line-height: 1.5;
+      }
+
+      .research-sublist li {
+        margin-bottom: 0.4rem;
+        list-style-type: "— ";
+      }
+
+      .research-sublist i {
+        color: #C1272D;
+        font-style: italic;
+        font-weight: 500;
+      }
+    </style>
+
+    <div class="research-grid">
+
+      <!-- === AI Alignment === -->
+      <div class="research-card">
+        <h3>AI Alignment</h3>
+        <p>
+          Advancing methods to align LLMs with human values, and preferences.
+        </p>
+        <ul class="research-sublist">
+          <li><i>Value Alignment</i> — Ensuring models act in ways consistent with human ethics, integrity, and the
+            <b>HHH</b> principles (Helpful, Harmless, Honest). Also, reflecting diverse cultural and moral perspectives
+            beyond a single worldview.
+          </li>
+          <li><i>Safety Alignment</i> — Developing defenses against <b>jailbreaks</b>, <b>adversarial attacks</b>, and
+            unsafe content generation.</li>
+          <li><i>Reasoning Alignment</i> — Promoting <b>logical consistency</b>, factual grounding, and transparent
+            reasoning chains to minimize hallucinations.</li>
+          <li><i>Cultural Alignment</i> — Embedding diverse <b>moral and social perspectives</b> to ensure global
+            inclusivity and fairness in LLM behavior.</li>
+        </ul>
+      </div>
+
+      <!-- === NLP for Social Good === -->
+      <div class="research-card">
+        <h3>NLP for Social Good</h3>
+        <p>
+          Applying NLP technologies to enhance societal welfare, inclusivity, and equitable access to information across
+          diverse communities.
+        </p>
+        <ul class="research-sublist">
+          <li><i>Healthcare NLP</i> — Combating misinformation and supporting public health communication through
+            evidence-grounded LLMs.</li>
+          <li><i>Low-Resource Languages</i> — Developing inclusive datasets and language tools for under-represented
+            regions.</li>
+          <li><i>Climate & Crisis Communication</i> — Enabling real-time, multilingual information flow during
+            emergencies and disasters.</li>
+        </ul>
+      </div>
+
+      <!-- === Online Trust and Safety === -->
+      <div class="research-card">
+        <h3>Online Trust and Safety</h3>
+        <p>
+          Building transparent, interpretable, and ethically aware AI systems that preserve trust and mitigate online
+          harms at scale.
+        </p>
+        <ul class="research-sublist">
+          <li><i>Misinformation Detection</i> — Identifying and explaining false or AI-generated content across text and
+            media.</li>
+          <li><i>Toxicity & Abuse Prevention</i> — Detecting hate speech, harassment, and coordinated manipulation
+            campaigns.</li>
+          <li><i>Content Moderation</i> — Aligning automated filters with community guidelines and global cultural
+            norms.</li>
+          <li><i>Trustworthy Agents</i> — Designing accountable conversational models with auditability and user-level
+            transparency.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== People ===== -->
+  <section id="people" style="background:#fffafc;">
+    <h2 class="section-title"
+      style="text-align:center; font-size:1.9rem; color:#C1272D; font-family:'Poppins',sans-serif; margin-bottom:1.5rem;">
+      People
+    </h2>
+
+    <style>
+      .people-category {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #C1272D;
+        font-family: 'Poppins', sans-serif;
+        margin: 2rem 0 1rem;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+
+      .people-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.2rem;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 1rem 1rem;
+      }
+
+      .person {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background: #fff;
+        border-radius: 20px;
+        padding: 1rem 1.2rem;
+        border: 1px solid #f0f0f0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        font-family: 'Nunito Sans', sans-serif;
+      }
+
+      .person:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(193, 39, 45, 0.15);
+      }
+
+      .profile-pic {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background: #f8d7da;
+        flex-shrink: 0;
+        border: 2px solid #C1272D;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .person-info {
+        flex: 1;
+      }
+
+      .role {
+        color: #C1272D;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+        letter-spacing: 0.05em;
+      }
+
+      .person-info h4 {
+        margin: 0 0 0.1rem;
+        font-family: 'Poppins', sans-serif;
+        color: #2b2b2b;
+        font-size: 1.05rem;
+      }
+
+      .person-info p {
+        color: #5b3a3a;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin: 0;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 10px;
+        margin-top: 0.3rem;
+      }
+
+      .social-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        color: #C1272D;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-decoration: none;
+      }
+
+      .social-link img {
+        width: 16px;
+        height: 16px;
+        object-fit: contain;
+      }
+
+      .social-link:hover {
+        color: #a92026;
+        text-decoration: underline;
+      }
+    </style>
+
+    <!-- ===== Faculty Lead ===== -->
+    <h3 class="people-category">Faculty Lead</h3>
+    <div style="display:flex; justify-content:center; max-width:800px; margin:0 auto 1rem;">
+      <div class="person" style="max-width:420px; width:100%;">
+        <div class="profile-pic" style="background-image:url('U1.png');"></div>
+        <div class="person-info">
+          <div class="role">Faculty Lead</div>
+          <h4>Dr. Usman Naseem</h4>
+          <p>Macquarie University, Australia</p>
+          <div class="social-links">
+            <a class="social-link" href="https://scholar.google.com/citations?hl=en&user=61Ou1P8AAAAJ" target="_blank">
+              <img src="GS.png" alt="Scholar Icon">Scholar
+            </a>
+            <a class="social-link" href="https://www.linkedin.com/in/usmannaseem87/" target="_blank">
+              <img src="LI.png" alt="LinkedIn Icon">LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Research Associates ===== -->
+    <h3 class="people-category">Research Associates</h3>
+    <div style="display:flex; justify-content:center; max-width:800px; margin:0 auto 1rem;">
+      <div class="person" style="max-width:420px; width:100%;">
+        <div class="profile-pic" style="background-image:url('Abid.png');"></div>
+        <div class="person-info">
+          <div class="role">Research Associate</div>
+          <h4>Dr. Abid Ali</h4>
+          <p>Macquarie University, Australia</p>
+          <div class="social-links">
+            <a class="social-link"
+              href="https://scholar.google.com/citations?hl=en&user=XijnS5IAAAAJ&view_op=list_works&sortby=pubdate"
+              target="_blank">
+              <img src="GS.png" alt="Scholar Icon">Scholar
+            </a>
+            <a class="social-link" href="https://www.linkedin.com/in/abidmeeraj/" target="_blank">
+              <img src="LI.png" alt="LinkedIn Icon">LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== HDR @ SocialNLP ===== -->
+    <h3 class="people-category">HDR @ SocialNLP</h3>
+    <div class="people-list">
+
+      <div class="person">
+        <div class="profile-pic" style="background-image:url('G.png');"></div>
+        <div class="person-info">
+          <div class="role">PhD Student</div>
+          <h4>Gautam Siddharth Kashyap</h4>
+          <p>Macquarie University, Australia</p>
+          <div class="social-links">
+            <a class="social-link" href="https://scholar.google.com/citations?hl=en&user=p8cdsVoAAAAJ" target="_blank">
+              <img src="GS.png" alt="Scholar Icon">Scholar
+            </a>
+            <a class="social-link" href="https://www.linkedin.com/in/gautam-kashyap-48021b159/" target="_blank">
+              <img src="LI.png" alt="LinkedIn Icon">LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="person">
+        <div class="profile-pic" style="background-image:url('V.png');"></div>
+        <div class="person-info">
+          <div class="role">PhD Student</div>
+          <h4>Kaixuan Ren (Victor)</h4>
+          <p>Macquarie University, Australia</p>
+
+          <div class="social-links">
+            <a class="social-link" href="https://scholar.google.com/citations?hl=en&user=dypNimYAAAAJ" target="_blank">
+              <img src="GS.png" alt="Scholar Icon">Scholar
+            </a>
+            <a class="social-link" href="https://www.linkedin.com/in/vvvictor/" target="_blank">
+              <img src="LI.png" alt="LinkedIn Icon">LinkedIn
+            </a>
+          </div>
+
+          <p class="affiliation-note">
+            Cotutelle/Joint PhD with University of Groningen, Groningen, Netherlands
+          </p>
+        </div>
+      </div>
+
+      <div class="person">
+        <div class="profile-pic" style="background-image:url('UM.png');"></div>
+        <div class="person-info">
+          <div class="role">PhD Student</div>
+          <h4>Utsav Maskey</h4>
+          <p>Macquarie University, Australia</p>
+          <div class="social-links">
+            <a class="social-link" href="https://scholar.google.com/citations?hl=en&user=NeR5aJUAAAAJ" target="_blank">
+              <img src="GS.png" alt="Scholar Icon">Scholar
+            </a>
+            <a class="social-link" href="https://www.linkedin.com/in/utsav-maskey/" target="_blank">
+              <img src="LI.png" alt="LinkedIn Icon">LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="person">
+        <div class="profile-pic" style="background-image:url('AN.png');"></div>
+        <div class="person-info">
+          <div class="role">PhD Student</div>
+          <h4>Afrozah Nadeem</h4>
+          <p>Macquarie University, Australia</p>
+          <div class="social-links">
+            <a class="social-link" href="https://scholar.google.com/citations?hl=en&user=zAlROqYAAAAJ" target="_blank">
+              <img src="GS.png" alt="Scholar Icon">Scholar
+            </a>
+            <a class="social-link" href="https://www.linkedin.com/in/afrozah-nadeem/" target="_blank">
+              <img src="LI.png" alt="LinkedIn Icon">LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="person">
+        <div class="profile-pic" style="background-image:url('A.png');"></div>
+        <div class="person-info">
+          <div class="role">PhD Student</div>
+          <h4>Juan (Ada) Ren</h4>
+          <p>Macquarie University, Australia</p>
+          <div class="social-links">
+            <a class="social-link" href="https://scholar.google.com/citations?user=_gW-FA4AAAAJ&hl=en&oi=sra"
+              target="_blank">
+              <img src="GS.png" alt="Scholar Icon">Scholar
+            </a>
+            <a class="social-link" href="#" target="_blank">
+              <img src="LI.png" alt="LinkedIn Icon">LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="person">
+        <div class="profile-pic" style="background-image:url('Ja1.png');"></div>
+        <div class="person-info">
+          <div class="role">PhD Student</div>
+          <h4>Hoang Le Bao (Jack) Pham</h4>
+          <p>Macquarie University, Australia</p>
+
+          <div class="social-links">
+            <a class="social-link" href="" target="_blank">
+              <img src="GS.png" alt="Scholar Icon">Scholar
+            </a>
+            <a class="social-link" href="https://www.linkedin.com/in/jack-pham-profile/" target="_blank">
+              <img src="LI.png" alt="LinkedIn Icon">LinkedIn
+            </a>
+          </div>
+
+          <p class="affiliation-note">
+            DIN Funded
+          </p>
+        </div>
+      </div>
+
+      <div class="person">
+        <div class="profile-pic" style="background-image:url('Tee.png');"></div>
+        <div class="person-info">
+          <div class="role">PhD Student</div>
+          <h4>Parinya (Tee) Sodsai</h4>
+          <p>Macquarie University, Australia</p>
+          <div class="social-links">
+            <a class="social-link" href="" target="_blank">
+              <img src="GS.png" alt="Scholar Icon">Scholar
+            </a>
+            <a class="social-link" href="https://www.linkedin.com/in/parinya-sodsai-70b66b18b/" target="_blank">
+              <img src="LI.png" alt="LinkedIn Icon">LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="person">
+        <div class="profile-pic" style="background-image:url('M.png');"></div>
+        <div class="person-info">
+          <div class="role">MRes Student</div>
+          <h4> Hoang Cuong Nguyen (Martin)</h4>
+          <p>Macquarie University, Australia</p>
+          <div class="social-links">
+            <a class="social-link" href="https://scholar.google.com/citations?user=r9XZodQAAAAJ&hl=en" target="_blank">
+              <img src="GS.png" alt="Scholar Icon">Scholar
+            </a>
+            <a class="social-link" href="https://www.linkedin.com/in/hoangcuongnguyen/" target="_blank">
+              <img src="LI.png" alt="LinkedIn Icon">LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="person">
+        <div class="profile-pic" style="background-image:url('AZ1.jpg');"></div>
+        <div class="person-info">
+          <div class="role">MRes Student</div>
+          <h4>Md Azizul Hoque</h4>
+          <p>Macquarie University, Australia</p>
+          <div class="social-links">
+            <a class="social-link"
+              href="https://scholar.google.com/citations?hl=en&user=tqExTZwAAAAJ&view_op=list_works&authuser=1&sortby=pubdate"
+              target="_blank">
+              <img src="GS.png" alt="Scholar Icon">Scholar
+            </a>
+            <a class="social-link" href="https://www.linkedin.com/in/md-azizul-hoque-574963301/" target="_blank">
+              <img src="LI.png" alt="LinkedIn Icon">LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="person">
+        <div class="profile-pic" style="background-image:url('K1.jpeg');"></div>
+        <div class="person-info">
+          <div class="role">MRes Student</div>
+          <h4>Kritesh Rauniyar</h4>
+          <p>Macquarie University, Australia</p>
+          <div class="social-links">
+            <a class="social-link"
+              href="https://scholar.google.com/citations?hl=en&user=1-h2mc8AAAAJ&view_op=list_works&sortby=pubdate"
+              target="_blank">
+              <img src="GS.png" alt="Scholar Icon">Scholar
+            </a>
+            <a class="social-link" href="https://www.linkedin.com/in/kritesh-rauniyar-bbb6171b3/" target="_blank">
+              <img src="LI.png" alt="LinkedIn Icon">LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="person">
+        <div class="profile-pic" style="background-image:url('Arash.png');"></div>
+        <div class="person-info">
+          <div class="role">MRes Student</div>
+          <h4>Arash Karimadini</h4>
+          <p>Macquarie University, Australia</p>
+          <div class="social-links">
+            <a class="social-link" href="" target="_blank">
+              <img src="GS.png" alt="Scholar Icon">Scholar
+            </a>
+            <a class="social-link" href="https://www.linkedin.com/in/arash-karimadini-25042b194/" target="_blank">
+              <img src="LI.png" alt="LinkedIn Icon">LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="person">
+        <div class="profile-pic" style="background-image:url('B.png');"></div>
+        <div class="person-info">
+          <div class="role">MRes Student</div>
+          <h4>Budhil Chakma</h4>
+          <p>Macquarie University, Australia</p>
+          <div class="social-links">
+            <a class="social-link" href="" target="_blank">
+              <img src="GS.png" alt="Scholar Icon">Scholar
+            </a>
+            <a class="social-link" href="https://www.linkedin.com/in/budhil-chakma/" target="_blank">
+              <img src="LI.png" alt="LinkedIn Icon">LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="person">
+        <div class="profile-pic" style="background-image:url('Ash.png');"></div>
+        <div class="person-info">
+          <div class="role">MRes Student</div>
+          <h4>Ashikur Rahman</h4>
+          <p>Macquarie University, Australia</p>
+          <div class="social-links">
+            <a class="social-link" href="" target="_blank">
+              <img src="GS.png" alt="Scholar Icon">Scholar
+            </a>
+            <a class="social-link" href="https://www.linkedin.com/in/ashikur-rahman-08b5a72b8/" target="_blank">
+              <img src="LI.png" alt="LinkedIn Icon">LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ===== RAs @ SocialNLP ===== -->
+    <h3 class="people-category">RA @ SocialNLP</h3>
+
+    <div class="affiliated-list">
+      <strong>Current</strong>
+      <ul>
+        <li>Arv Bali (Remote).</li>
+        <li>Pushkar Arora (Remote).</li>
+        <li>Pratik Jalan (Remote).</li>
+      </ul>
+
+      <strong>Past</strong>
+      <ul>
+        <li>Anudeex Shetty.</li>
+        <li>Zhihao Zhang.</li>
+        <li>Mo Wang.</li>
+        <li>Sahil Tripathi.</li>
+        <li>Ebad Shabbir.</li>
+        <li>Rafiq Ali.</li>
+        <li>Sushant Kumar Ray.</li>
+        <li>Abdullah Mohammad.</li>
+        <li>Syed Talal Ahmad.</li>
+        <li>Kaixuan Ren (Current PhD Student @ SocialNLP).</li>
+      </ul>
+    </div>
+
+    <!-- ===== Visiting Students @ SocialNLP ===== -->
+    <h3 class="people-category">Visiting Students @ SocialNLP</h3>
+
+    <div class="affiliated-list">
+      <strong>Current</strong>
+      <ul>
+        <li>Ahmer Tabassum — Postgrad Student @ Mohamed bin Zayed University of Artificial Intelligence, Abu Dhabi,
+          United Arab Emirates (2026).</li>
+        <li>Owais Aijaz — Postgrad Student @ Mohamed bin Zayed University of Artificial Intelligence, Abu Dhabi, United
+          Arab Emirates (2026).</li>
+
+      </ul>
+
+      <strong>Past</strong>
+      <ul>
+        <li>Zhuoye ZHANG — Undergrad Student @ The Hong Kong Polytechnic University, Hung Hom, Hong Kong (2026).</li>
+        <li>Miaomiao Ji — PhD Student @ Sichuan University, Chengdu, China (2025).</li>
+        <li>Muhammad Amin Nadim — PhD Student @ Università Telematica Pegaso, Foggia, Italy (2026).</li>
+      </ul>
+    </div>
+
+    <!-- ===== Affiliated with @ SocialNLP ===== -->
+    <h3 class="people-category">Affiliated with @ SocialNLP</h3>
+    <div class="affiliated-list">
+      <ul>
+        <li>Lingfeng Zhong — Co-Advisor @ Macquarie University, Sydney, Australia.</li>
+        <li>Pranav Bhandari — Co-Advisor @ University of Western Australia, Perth, Australia.</li>
+        <li>Ahmed Abbasi — Co-Advisor @ James Cook University, Queensland, Australia.</li>
+        <li>Muhammad Islam — Co-Advisor @ James Cook University, Queensland, Australia.</li>
+        <li>Shuchang Ye — Co-Advisor @ at University of Sydney, Sydney, Australia.</li>
+        <li>Yongpei Ma — Co-Advisor @ University of Sydney, Sydney, Australia.</li>
+        <li>Pengyu Wang — Co-Advisor @ University of Sydney, Sydney, Australia.</li>
+        <li>Yupeng Zhang — Co-Advisor @ University of Sydney, Sydney, Australia.</li>
+        <li>Qixuan Hu — Co-Advisor @ University of Sydney, Sydney, Australia.</li>
+        <li>Xiao Wang — Co-Advisor @ University of Sydney, Sydney, Australia.</li>
+      </ul>
+    </div>
+
+    <h3 class="people-category">Graduated with @ SocialNLP</h3>
+
+    <div class="affiliated-list">
+
+      <strong>PhD Students</strong>
+      <ul>
+        <li>Abid Ali — Co-Advisor @ Macquarie University, Sydney, Australia → PhD Completed (2026).</li>
+        <li>Saleh Afzoon — Co-Advisor @ Macquarie University, Sydney, Australia → PhD Completed (2026).</li>
+        <li>Akram Moh'd Mustafa — Co-Advisor @ James Cook University, Queensland, Australia → PhD Completed (2026).</li>
+      </ul>
+
+      <strong>MRes Students</strong>
+      <ul>
+
+        <li>Arthur Chen — Co-Advisor @ University of New South Wales, Sydney, Australia → MRes Completed (2026).</li>
+
+        <li>Utsav Maskey — Primary Advisor @ Macquarie University, Sydney, Australia → MRes Completed; Current PhD
+          Student @ SocialNLP (2026).</li>
+
+        <li>Afrozah Nadeem — Primary Advisor @ Macquarie University, Sydney, Australia → MRes Completed; Current PhD
+          Student @ SocialNLP (2026).</li>
+
+        <li>Juan (Ada) Ren — Primary Advisor @ Macquarie University, Sydney, Australia → MRes Completed; Current PhD
+          Student @ SocialNLP (2026).</li>
+
+        <li>Yiran Zhang (Grant) — Primary Advisor @ Macquarie University, Sydney, Australia → MRes Completed; Current
+          PhD Student @ University of Western Australia, Perth, Australia (2026).</li>
+
+        <li>Md. Nazmul Hossain — Co-Advisor @ Macquarie University, Sydney, Australia → MRes Completed (2025).</li>
+
+        <li>Afrouz Sheikholeslami — Co-Advisor @ Macquarie University, Sydney, Australia → MRes Completed (2025).</li>
+
+        <li>Md Azizul Hoque — Primary Advisor @ Macquarie University, Sydney, Australia → MRes (Graduate Diploma of
+          Research Completed) (2025); Current MRes Student @ SocialNLP (2026).</li>
+      </ul>
+
+    </div>
+  </section>
+
+
+
+
+  <!-- ===== Projects ===== 
+  <section id="projects">
+    <h2 class="section-title">Projects & Resources <small>(tools, datasets, demos)</small></h2>
+    <div class="grid grid-3">
+      <div class="card">
+        <h3>TrinityX / AlignX</h3>
+        <p class="muted">Mixture-of-calibrated-experts framework for aligning LLMs.</p>
+        <p><a href="#">GitHub ↗</a></p>
+      </div>
+      <div class="card">
+        <h3>VaxGuardRole / ChildGuard</h3>
+        <p class="muted">Role-based multimodal misinformation and child-safety datasets.</p>
+        <p><a href="#">Dataset page ↗</a></p>
+      </div>
+      <div class="card">
+        <h3>DisasterNet-LLM</h3>
+        <p class="muted">Remote sensing for disaster response using vision-language models.</p>
+        <p><a href="#">Project page ↗</a></p>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- ===== Publications ===== -->
+  <section id="publications" style="background:#fffafc;">
+    <h2 class="section-title"
+      style="text-align:center; font-size:1.9rem; color:#C1272D; font-family:'Poppins',sans-serif; margin-bottom:2rem;">
+      Recent Publications
+    </h2>
+
+    <style>
+      .pub-section {
+        max-width: 1100px;
+        margin: 0 auto 2.5rem;
+        padding: 0 1rem;
+        font-family: 'Nunito Sans', sans-serif;
+      }
+
+      .pub-subtitle {
+        color: #C1272D;
+        font-size: 1.3rem;
+        font-weight: 600;
+        font-family: 'Poppins', sans-serif;
+        margin-bottom: 1rem;
+        border-left: 4px solid #C1272D;
+        padding-left: 0.6rem;
+      }
+
+      .pub-list {
+        list-style: none;
+        padding: 0;
+        display: grid;
+        gap: 1rem;
+      }
+
+      .pub-item {
+        background: #fff;
+        border-radius: 14px;
+        padding: 1.1rem 1.3rem;
+        border: 1px solid #f0f0f0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .pub-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(193, 39, 45, 0.15);
+      }
+
+      .pub-item strong {
+        color: #2b2b2b;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+      }
+
+      .venue {
+        color: #C1272D;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        margin-bottom: 0.2rem;
+        font-weight: 600;
+      }
+
+      .muted {
+        color: #5b3a3a;
+        font-size: 0.92rem;
+        line-height: 1.5;
+      }
+
+      i {
+        color: #C1272D;
+      }
+    </style>
+
+    <!-- === EMNLP 2026 === -->
+    <div class="pub-section">
+      <div class="pub-subtitle">EMNLP 2026</div>
+      <ul class="pub-list">
+
+        <li class="pub-item">
+          <div class="venue">EMNLP Mains 2026</div>
+          Kashyap, Gautam Siddharth, Mark Dras, and Usman Naseem.
+          <i>“Is Alignment Enough for Helpfulness, Harmlessness, and Honesty?”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EMNLP Mains 2026</div>
+          Maskey, Utsav, Mark Dras, and Usman Naseem.
+          <i>“Over-Refusal and Representation Subspaces: A Mechanistic Analysis of Task-Conditioned Refusal in Aligned
+            LLMs.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EMNLP Mains 2026</div>
+          Nguyen, Hoang Cuong, Mark Dras, and Usman Naseem.
+          <i>“Beyond Shallow Alignment: How Post-Training Methods Determine Refusal Circuits and Steering
+            Robustness.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EMNLP Mains 2026</div>
+          Hoque, Md Azizul, Mark Dras, and Usman Naseem.
+          <i>“EQUAL: Evaluating Pluralistic Alignment of LLMs Across Educational Perspectives.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EMNLP Mains 2026</div>
+          Zheng, Shenyan, Jiayou Zhong, Anudeex Shetty, Heng Ji, Preslav Nakov, and Usman Naseem.
+          <i>“VISPA: Pluralistic Alignment via Automatic Value Selection and Activation.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EMNLP Mains 2026</div>
+          Hashmat, Abdullah, Usman Naseem, and Agha Ali Raza.
+          <i>“Pak3H: Evaluating the Cost of Cultural Mismatch in LLM Alignment with a Human-Contextualized Urdu
+            Benchmark.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EMNLP Findings 2026</div>
+          Rauniyar, Kritesh, Mark Dras, and Usman Naseem.
+          <i>“PDOS: Widening the Safety Overton Window Through Persona-Driven Generation.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EMNLP Findings 2026</div>
+          Kashyap, Gautam Siddharth, Md Azizul Hoque, Kinjalk Srivastava, Pratik Jalan, Subhashis Kar, and Usman Naseem.
+          <i>“How Far Can Current Tokenizers Go in Bangla? A Benchmark and a Morphology-Aware Solution.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EMNLP Findings 2026</div>
+          Kashyap, Gautam Siddharth, Mark Dras, and Usman Naseem.
+          <i>“Do We Require Large Language Models To Be HHH Aligned For Reasoning, Safety, Value, and Pluralistic?”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EMNLP Findings 2026</div>
+          Kashyap, Gautam Siddharth, Mark Dras, and Usman Naseem.
+          <i>“When Helpfulness, Harmlessness, and Honesty Remember They Are on the Same Team.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EMNLP Findings 2026</div>
+          Nasim, Mehwish, Sanjeevan Selvaganapathy, Neel Ganapathi Sabhahit, Marie Griesbach, Pranav Bhandari, Janina
+          Lütke Stockdiek, Lennart Schäpermeier, Usman Naseem, and Christian Grimme.
+          <i>“Do LLMs Use Cultural Knowledge Without Being Told? A Multilingual Evaluation of Implicit Pragmatic
+            Adaptation.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+      </ul>
+    </div>
+
+    <!-- === ACL 2026 === -->
+    <div class="pub-section">
+      <div class="pub-subtitle">ACL 2026</div>
+      <ul class="pub-list">
+
+        <li class="pub-item">
+          <div class="venue">ACL Mains 2026</div>
+          Kashyap, Gautam Siddharth, Mark Dras, and Usman Naseem.
+          <i>“AlignCultura: Towards Culturally Aligned Large Language Models?”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">ACL Mains 2026</div>
+          Maskey, Utsav, Sumit Yadav, Mark Dras, and Usman Naseem.
+          <i>“SafeConstellations: Mitigating Over-Refusals in LLMs Through Task-Aware Representation Steering.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">ACL Mains 2026</div>
+          Nadeem, Afrozah, Mark Dras, and Usman Naseem.
+          <i>“Framing Political Bias in Multilingual LLMs Across Pakistani Languages.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">ACL Mains 2026</div>
+          Zhong, Lingfeng, Qiongkai Xu, and Usman Naseem.
+          <i>“Activation Decomposition and Steering for LLM Backdoor Remediation.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">ACL Mains 2026</div>
+          Hasan, Md Arid, Firoj Alam, Md Fahad, Usman Naseem, and Syed Ishtiaque.
+          <i>“LLM-Based Multi-Task Bangla Hate Speech Detection: Type, Severity, and Target.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">ACL Findings 2026</div>
+          Naseem, Usman, Robert Geislinger, Juan Ren, Sarah Kohail, Rudy Alexandro Garrido Veliz, P Sam Sahil, Yiran
+          Zhang, Idris Abdulmumin, Marco Antonio Stranisci, Özge Alacam, Cengiz Acarturk, Aisha Jabr, Saba Anwar, Abinew
+          Ali Ayele, Simona Frenda, Alessandra Teresa Cignarella, Elena Tutubalina, Oleg Rogov, Aung Kyaw Htet, Xintong
+          Wang, Surendrabikram Thapa, Kritesh Rauniyar, Tanmoy Chakraborty, MD Arfeen Zeeshan, Dheeraj Kodati, Satya
+          Keerthi, Sahar Moradizyeh, Firoj Alam, Md Arid Hasan, Syed Ishtiaque Ahmed, Ye Kyaw Thu, Shantipriya Parida,
+          Ihsan Ayyub Qazi, Lilian Diana Awour Wanzare, Nelson Odhiambo Onyango, Clemencia Siro, Jane Wanjiru Kimani,
+          Ibrahim Said Ahmad, Adem Chanie Ali, Martin Semmann, Chris Biemann, Shamsuddeen Hassan Muhammad, and Seid
+          Muhie Yimam.
+          <i>“POLAR: A Benchmark for Multilingual, Multicultural, and Multi-Event Online Polarization.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">ACL Findings 2026</div>
+          Nadeem, Afrozah, Mark Dras, and Usman Naseem.
+          <i>“Fairness Evaluation and Inference Level Mitigation in LLMs.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">ACL Findings 2026</div>
+          Ali, Abid, Diego Molla, and Usman Naseem.
+          <i>“Measuring What Matters Beyond Text: Evaluating Multimodal Summaries by Quality, Alignment, and
+            Diversity.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">ACL Findings 2026</div>
+          Ali, Abid, Diego Molla, and Usman Naseem.
+          <i>“Towards Visually Grounded Multimodal Summarization via Cross-Modal Transformer and Gated Attention.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">ACL Findings 2026</div>
+          Bhandari, Pranav, Usman Naseem, and Mehwish Nasim.
+          <i>“Do Personality Traits Interfere? Geometric Limitations of Steering in LLMs.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">ACL Findings 2026</div>
+          Abishethvarman, Vadivel, Bhavik Chandna, Pratik Jalan, and Usman Naseem.
+          <i>“XGUARD: A Graded Benchmark for Evaluating Safety Failures of Large Language Models on Extremist
+            Content.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">ACL Findings 2026</div>
+          Zhang, Zhihao, Liting Huang, Guanghao Wu, Preslav Nakov, Heng Ji, and Usman Naseem.
+          <i>“Health-ORSC-Bench: A Benchmark for Measuring Over-Refusal and Safety Completion in Health Context.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">ACL Industry 2026</div>
+          Mohammad, Abdullah, Sushant Kumar Ray, Pushkar Arora, Rafiq Ali, Ebad Shabbir, Gautam Siddharth Kashyap,
+          Jiechao Gao, and Usman Naseem.
+          <i>“Are Large Language Models Economically Viable for Industry Deployment?”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+      </ul>
+    </div>
+
+    <!-- === The Web Conference (WWW) 2026 === -->
+    <div class="pub-section">
+      <div class="pub-subtitle">The Web Conference (WWW) 2026</div>
+      <ul class="pub-list">
+
+        <li class="pub-item">
+          <div class="venue">WWW 2026</div>
+          Tripathi, Sahil, Gautam Siddharth Kashyap, Mehwish Nasim, Jian Yang, Jiechao Gao, and Usman Naseem.
+          <i>“They Said Memes Were Harmless --- We Found the Ones That Hurt: Decoding Jokes, Symbols, and Cultural
+            References.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">WWW 2026</div>
+          Wu, Yiming, Liang Hu, Mingzhu Zhou, Tangwei Ye, Xuejie Yang, Xun Yang, Zhongyuan Lai, Qi Zhang, and Usman
+          Naseem.
+          <i>“Counterfactual Augmented Causal Reasoning for Aspect-Based Sentiment Analysis.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">WWW 2026</div>
+          Wang, Momo, Kaixuan Ren, Pratik Jalan, Ahmed Ashraf, Tuong Vy Vu, Rahul Seetharaman, Shah Nawaz, and Usman
+          Naseem.
+          <i>“From Native Memes to Global Moderation: Cross-Cultural Evaluation of Vision–Language Models for Hateful
+            Meme Detection.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">WWW 2026</div>
+          Yuan, Jiahao, Zhiqing Cui, Hanqing Wang, Yuansheng Gao, Yucheng Zhou, and Usman Naseem.
+          <i>“Kardia-R1: Unleashing LLMs to Reason toward Understanding and Empathy for Emotional Support via
+            Rubric-as-Judge Reinforcement Learning.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">WWW 2026</div>
+          Liu, Ping, Hui Song, Shufeng Hao, Xiaoning Hao, Zexu Zhang, and Usman Naseem.
+          <i>“HCSL: Rumor Detection by Integrating Intra-Sample Curriculum Learning and Hierarchical Semantic
+            Learning.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">WWW 2026</div>
+          Zhang, Wei, Shufeng Hao, Chongyang Shi, Usman Naseem, Jinyan Liu, and Ziyu Li.
+          <i>“ReRule: Temporal Rule-Augmented Language Modeling for Causal Event Chain Completion.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+      </ul>
+    </div>
+
+    <!-- === EACL 2026 === -->
+    <div class="pub-section">
+      <div class="pub-subtitle">EACL 2026</div>
+      <ul class="pub-list">
+
+        <!-- Main Conference (Long Papers) -->
+
+        <li class="pub-item">
+          <div class="venue">EACL Mains 2026</div>
+          Kashyap, Gautam Siddharth, Mark Dras, and Usman Naseem.
+          <i>“When the Model Said ‘No Comment’, We Knew Helpfulness Was Dead, Honesty Was Alive, and Safety Was
+            Terrified.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EACL Mains 2026</div>
+          Ali, Abid, Diego Molla, and Usman Naseem.
+          <i>“MULSUM: A Multimodal Summarization System with Vis-Aligner and Diversity-Aware Image Selection.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EACL Mains 2026</div>
+          Bhandari, Pranav, Nicolas Fay, Sanjeevan Selvaganapathy, Amitava Datta, Usman Naseem, and Mehwish Nasim.
+          <i>“Activation-Space Personality Steering: Hybrid Layer Selection for Stable Trait Control in LLMs.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <!-- Findings -->
+        <li class="pub-item">
+          <div class="venue">EACL Findings 2026</div>
+          Kashyap, Gautam Siddharth, Harsh Joshi, Niharika Jain, Ebad Shabbir, Jiechao Gao, Nipun Joshi, and Usman
+          Naseem.
+          <i>“Revealing the Truth with ConLLM for Detecting Multi-Modal Deepfakes.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EACL Findings 2026</div>
+          Naseem, Usman, Gautam Siddharth Kashyap, Sushant Kumar Ray, Rafiq Ali, Ebad Shabbir, and Abdullah Mohammad.
+          <i>“Do Large Language Models Reflect Demographic Pluralism in Safety?”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <!-- Industry Track -->
+        <li class="pub-item">
+          <div class="venue">EACL Industry 2026</div>
+          Ray, Sushant Kumar, Gautam Siddharth Kashyap, Sahil Tripathi, Nipun Joshi, Vijay Govindarajan, Rafiq Ali,
+          Jiechao Gao, and Usman Naseem.
+          <i>“Do Clinical Question Answering Systems Really Need Specialised Medical Fine Tuning?”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <!-- Workshop -->
+        <li class="pub-item">
+          <div class="venue">EACL Workshop 2026 (Workshop on Language Models for Low-Resource Languages)</div>
+          Yadav, Sumit, Raju Kumar Yadav, Utsav Maskey, Gautam Siddharth Kashyap, Ganesh Gautam, and Usman Naseem.
+          <i>“MaiBERT: A Pre-training Corpus and Language Model for Low-Resourced Maithili Language.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+      </ul>
+    </div>
+
+    <!-- === AAAI 2026 === -->
+    <div class="pub-section">
+      <div class="pub-subtitle">AAAI 2026</div>
+      <ul class="pub-list">
+
+        <li class="pub-item">
+          <div class="venue">AAAI 2026</div>
+          Huang, Weiquan, Aoqi Wu, Yifan Yang, Xufang Luo, Yuqing Yang, Usman Naseem, Chunyu Wang, Qi Dai, Xiyang Dai,
+          Dongdong Chen, Chong Luo, Lili Qiu, and Liang Hu.
+          <i>“LLM2CLIP: Powerful Language Model Unlocks Richer Cross-Modality Representation.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">AAAI 2026</div>
+          Zhang, Yiran, Mingyang Lin, Mark Dras, and Usman Naseem.
+          <i>“Beyond the Black Box: Demystifying Multi-Turn LLM Reasoning with VISTA.”</i>
+          <span class="muted">(2026).</span>
+        </li>
+
+      </ul>
+    </div>
+
+    <!-- === IEEE Big Data 2025 === -->
+    <div class="pub-section">
+      <div class="pub-subtitle">IEEE Big Data 2025</div>
+      <ul class="pub-list">
+
+        <li class="pub-item">
+          <div class="venue">IEEE Big Data 2025</div>
+          Ren, Juan, Mark Dras, and Usman Naseem.
+          <i>“Agentic Moderation: Multi-Agent Design for Safer Vision-Language Models.”</i>
+          <span class="muted">(2025).</span>
+        </li>
+
+      </ul>
+    </div>
+
+    <!-- === CASE @ RANLP 2025 === -->
+    <div class="pub-section">
+      <div class="pub-subtitle">CASE @ RANLP 2025</div>
+      <ul class="pub-list">
+
+        <li class="pub-item">
+          <div class="venue">CASE@RANLP 2025 (Best Paper Award)</div>
+          Nadeem, Afrozah, Mark Dras, and Usman Naseem.
+          <i>“Steering Towards Fairness: Mitigating Political Bias in LLMs.”</i>
+          <span class="muted">arXiv preprint arXiv:2508.08846 (2025).</span>
+        </li>
+
+      </ul>
+    </div>
+
+    <!-- === EMNLP 2025 === -->
+    <div class="pub-section">
+      <div class="pub-subtitle">EMNLP 2025</div>
+      <ul class="pub-list">
+
+        <li class="pub-item">
+          <div class="venue">EMNLP Main 2025</div>
+          Kashyap, Gautam Siddharth, Mark Dras, and Usman Naseem.
+          <i>“Too Helpful, Too Harmless, Too Honest or Just Right?”</i>
+          <span class="muted">arXiv preprint arXiv:2509.08486 (2025).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EMNLP Main 2025</div>
+          Zhong, Jiayou, Anudeex Shetty, Chao Jia, Xuanrui Lin, and Usman Naseem.
+          <i>“Pluralistic Alignment for Healthcare: A Role-Driven Framework.”</i>
+          <span class="muted">arXiv preprint arXiv:2509.10685 (2025).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EMNLP Main 2025</div>
+          Bhandari, Pranav, Nicolas Fay, Michael Wise, Amitava Datta, Stephanie Meek, Usman Naseem, and Mehwish Nasim.
+          <i>“Can LLM Agents Maintain a Persona in Discourse?”</i>
+          <span class="muted">arXiv preprint arXiv:2502.11843 (2025).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EMNLP Findings 2025</div>
+          Zhang, Zhihao, Yiran Zhang, Xiyue Zhou, Liting Huang, Imran Razzak, Preslav Nakov, and Usman Naseem.
+          <i>“From Generation to Detection: A Multimodal Multi-Task Dataset for Benchmarking Health Misinformation.”</i>
+          <span class="muted">arXiv preprint arXiv:2505.18685 (2025).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EMNLP Findings 2025</div>
+          Chandna, Bhavik, Mariam Aboujenane, and Usman Naseem.
+          <i>“ExtremeAIGC: Benchmarking LMM Vulnerability to AI-Generated Extremist Content.”</i>
+          <span class="muted">arXiv preprint arXiv:2503.09964 (2025).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EMNLP Findings 2025</div>
+          Maskey, Utsav, Chencheng Zhu, and Usman Naseem.
+          <i>“Benchmarking Large Language Models for Cryptanalysis and Mismatched-Generalization.”</i>
+          <span class="muted">arXiv preprint arXiv:2505.24621 (2025).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EMNLP Findings 2025</div>
+          Zhang, Yiran, Mo Wang, Xiaoyang Li, Kaixuan Ren, Chencheng Zhu, and Usman Naseem.
+          <i>“TurnBench-MS: A Benchmark for Evaluating Multi-Turn, Multi-Step Reasoning in Large Language Models.”</i>
+          <span class="muted">arXiv preprint arXiv:2506.01341 (2025).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EMNLP Industry Track 2025</div>
+          Azeez, Mohammad Anas, Rafiq Ali, Ebad Shabbir, Zohaib Hasan Siddiqui, Gautam Siddharth Kashyap, Jiechao Gao,
+          and Usman Naseem.
+          <i>“Truth, Trust, and Trouble: Medical AI on the Edge.”</i>
+          <span class="muted">(2025).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EMNLP Industry Track 2025</div>
+          Siddiqui, Zohaib Hasan, Jiechao Gao, Ebad Shabbir, Mohammad Anas Azeez, Rafiq Ali, Gautam Siddharth Kashyap,
+          and Usman Naseem.
+          <i>“LLMs on a Budget? Say HOLA.”</i>
+          <span class="muted">(2025).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">EMNLP Workshop 2025 (6th Workshop on Computational Approaches to Discourse, Context and
+            Document-Level Inferences)</div>
+          Thapa, Surendrabikram, Kritesh Rauniyar, Hariram Veeramani, Surabhi Adhikari, Imran Razzak, and Usman Naseem.
+          <i>“Probing the Limits of Multilingual Language Understanding: Low-Resource Language Proverbs as LLM Benchmark
+            for AI Wisdom.”</i>
+          <span class="muted">(2025).</span>
+        </li>
+
+      </ul>
+    </div>
+
+    <!-- === ACL 2025 === -->
+    <div class="pub-section">
+      <div class="pub-subtitle">ACL 2025</div>
+      <ul class="pub-list">
+
+        <li class="pub-item">
+          <div class="venue">ACL Main 2025</div>
+          Shetty, Anudeex, Amin Beheshti, Mark Dras, and Usman Naseem.
+          <i>“VITAL: A New Dataset for Benchmarking Pluralistic Alignment in Healthcare.”</i>
+          <span class="muted">arXiv preprint arXiv:2502.13775 (2025).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">ACL Main 2025</div>
+          Yuan, Jiahao, Zixiang Di, Zhiqing Cui, Guisong Yang, and Usman Naseem.
+          <i>“ReflectDiffu: Reflect between Emotion-intent Contagion and Mimicry for Empathetic Response Generation via
+            a RL-Diffusion Framework.”</i>
+          <span class="muted">arXiv preprint arXiv:2409.10289 (2024).</span>
+        </li>
+
+        <li class="pub-item">
+          <div class="venue">ACL Main 2025</div>
+          Yuan, Jiahao, Dehui Du, Hao Zhang, Zixiang Di, and Usman Naseem.
+          <i>“Reversal of Thought: Enhancing Large Language Models with Preference-Guided Reverse Reasoning
+            Warm-up.”</i>
+          <span class="muted">arXiv preprint arXiv:2410.12323 (2024).</span>
+        </li>
+
+
+      </ul>
+    </div>
+
+  </section>
+
+
+  <!-- ===== News & Lab Updates ===== -->
+  <section id="news" style="background:#fffafc; scroll-margin-top:85px;">
+    <h2 class="section-title" style="text-align:center; font-size:1.9rem; color:#C1272D; font-family:'Poppins',sans-serif; margin-bottom:0.6rem;">News &amp; Updates</h2>
+    <p style="text-align:center; color:#5b3a3a; font-family:'Nunito Sans',sans-serif; margin:0 auto 1.7rem;">Latest achievements, awards, publications, and announcements from SocialNLP Research Lab.</p>
+    <ul class="pub-list" style="max-width:950px; margin:0 auto; font-family:'Nunito Sans',sans-serif; color:#4b1d26;">
+        <li class="pub-item" style="list-style:none;"><strong style="color:#C1272D;">Nov 2026 —</strong>
+            🌟 Usman Naseem selected to present at the AAAI 2027 New Faculty Highlights Program, showcasing our group’s
+            research on AI Safety and Alignment.</li>
+        <li class="pub-item" style="list-style:none;"><strong style="color:#C1272D;">Sept 2026 —</strong>
+            🌟 Usman Naseem awarded the BESC Rising Star 2026 award for his work on AI Alignment and AI/NLP for Social
+            Good.</li>
+        <li class="pub-item" style="list-style:none;"><strong style="color:#C1272D;">Aug 2026 —</strong>
+            🏆 <b>11 papers</b> (6 Mains, 5 Findings) at <b>EMNLP 2026</b>.</li>
+        <li class="pub-item" style="list-style:none;"><strong style="color:#C1272D;">Jul 2026 —</strong>
+            🏆 <b>POLAR: A Benchmark for Multilingual, Multicultural, and Multi-Event Online Polarization</b>
+            received the <b>ACL 2026 Best Paper Award @ EEUC Workshop</b>
+            and the <b>SemEval 2026 Task 9 Best Task Paper Award (Runner-Up)</b>
+            at <b>ACL 2026, San Diego, USA</b>.</li>
+        <li class="pub-item" style="list-style:none;"><strong style="color:#C1272D;">Jul 2026 —</strong>
+            🎤 Usman Naseem delivered a <b>Keynote Talk</b> at the
+            <b>EEUCA Workshop, ACL 2026</b> on
+            <i>Political Event Understanding in Large Language Models</i>
+            in <b>San Diego, USA</b>.</li>
+        <li class="pub-item" style="list-style:none;"><strong style="color:#C1272D;">Jun 2026 —</strong>
+            🎉 <b>Gautam Kashyap</b> selected as
+            <b>ML Researcher @ Algoverse Research</b>
+            for a <b>3-month period</b>.</li>
+        <li class="pub-item" style="list-style:none;"><strong style="color:#C1272D;">Apr 2026 —</strong>
+            🏆 <b>1 paper</b> at <b>IJCAI 2026</b>.</li>
+        <li class="pub-item" style="list-style:none;"><strong style="color:#C1272D;">Apr 2026 —</strong>
+            🏆 <b>13 papers</b> (5 Mains, 7 Findings, 1 Industry)
+            at <b>ACL 2026</b>.</li>
+        <li class="pub-item" style="list-style:none;"><strong style="color:#C1272D;">Mar 2026 —</strong>
+            🎤 Invited poster presentation of our
+            <b>EMNLP 2025</b> paper
+            <b>“Too Helpful, Too Harmless, Too Honest or Just Right?”</b>
+            at the <b>Kingston AI Symposium 2026</b>, Adelaide with travel grant to Gautam.</li>
+        <li class="pub-item" style="list-style:none;"><strong style="color:#C1272D;">Jan 2026 —</strong>
+            🏆 Usman Naseem won <b>Best Paper</b> at <b>AAAI 2026</b>.</li>
+        <li class="pub-item" style="list-style:none;"><strong style="color:#C1272D;">Jan 2026 —</strong>
+            🏆 <b>6 papers</b> at <b>WebConf 2026</b>.</li>
+        <li class="pub-item" style="list-style:none;"><strong style="color:#C1272D;">Jan 2026 —</strong>
+            🏆 <b>6 papers</b> (3 Mains, 2 Findings, 1 Industry)
+            at <b>EACL 2026</b>.</li>
+        <li class="pub-item" style="list-style:none;"><strong style="color:#C1272D;">Nov 2025 —</strong>
+            🎉 Juan (Ada) Ren’s paper accepted at <b>IEEE Big Data 2025</b>.</li>
+        <li class="pub-item" style="list-style:none;"><strong style="color:#C1272D;">Nov 2025 —</strong>
+            🌟 Usman Naseem received the <b>Outstanding SAC Award</b>
+            at <b>EMNLP 2025</b>.</li>
+        <li class="pub-item" style="list-style:none;"><strong style="color:#C1272D;">Oct 2025 —</strong>
+            🎉 Yiran Zhang (AAAI Demo + volunteer position)
+            and Usman Naseem (<i>LLM2CLIP</i>, AAAI Main Track).</li>
+        <li class="pub-item" style="list-style:none;"><strong style="color:#C1272D;">Sep 2025 —</strong>
+            🎉 Afrozah Nadeem won <b>Best Paper</b> &
+            <b>Best Presentation</b> at <b>CASE @ RANLP 2025</b>.</li>
+        <li class="pub-item" style="list-style:none;"><strong style="color:#C1272D;">Aug 2025 —</strong>
+            🏆 <b>10 papers</b> (3 Mains, 4 Findings, 2 Industry, 1 Workshop)
+            at <b>EMNLP 2025</b>. Yiran Zhang got a volunteer position.</li>
+        <li class="pub-item" style="list-style:none;"><strong style="color:#C1272D;">Aug 2025 —</strong>
+            🎓 Invited tutorials on <b>AI Alignment</b> at
+            <b>ALTA 2025</b> & <b>AJCAI 2025</b>.</li>
+    </ul>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <!-- ===== Contact ===== -->
+  <section id="contact" style="background:#fffafc;">
+    <h2 class="section-title"
+      style="text-align:center; font-size:1.9rem; color:#C1272D; font-family:'Poppins',sans-serif; margin-bottom:1.5rem;">
+      Contact
+    </h2>
+
+    <p
+      style="text-align:center; color:#4b1d26; font-family:'Nunito Sans',sans-serif; font-size:1rem; margin-bottom:1.5rem;">
+
+    </p>
+
+    <div style="display:flex; justify-content:center; margin-bottom:1.5rem;">
+      <div class="person" style="
+      display:flex;
+      align-items:center;
+      gap:1rem;
+      background:#fff;
+      border-radius:20px;
+      padding:1rem 1.3rem;
+      border:1px solid #f0f0f0;
+      box-shadow:0 2px 8px rgba(0,0,0,0.05);
+      max-width:400px;
+      transition:transform 0.3s ease, box-shadow 0.3s ease;
+      font-family:'Nunito Sans',sans-serif;">
+
+        <div class="profile-pic" style="
+        width:60px;
+        height:60px;
+        border-radius:50%;
+        background:#f8d7da;
+        border:2px solid #C1272D;
+        background-image:url('U1.png');
+        background-size:cover;
+        background-position:center;
+        flex-shrink:0;">
+        </div>
+
+        <div class="person-info">
+          <div class="role"
+            style="color:#C1272D; font-size:0.85rem; text-transform:uppercase; font-weight:600; margin-bottom:0.2rem;">
+            Faculty Lead
+          </div>
+          <h4 style="margin:0; color:#2b2b2b; font-family:'Poppins',sans-serif; font-size:1.05rem;">
+            Dr. Usman Naseem
+          </h4>
+          <p style="margin:0; color:#5b3a3a; font-size:0.92rem;">Macquarie University, Australia</p>
+          <p style="margin:0.2rem 0 0; color:#C1272D; font-weight:600; font-size:0.9rem;">
+            📧 usman.naseem@mq.edu.au
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center; font-size:0.95rem; color:#5b3a3a; font-family:'Nunito Sans',sans-serif;">
+      <strong>School of Computing, Macquarie University, Sydney, NSW 2113, Australia</strong>
+    </p>
+  </section>
+
+
+  <!-- ===== Footer ===== -->
+  <footer style="background:#fff0f1; padding:1.8rem 0; border-top:2px solid #f3c8cb;">
+    <div class="footer-inner" style="
+    max-width:1100px;
+    margin:0 auto;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 1rem;
+    font-family:'Nunito Sans',sans-serif;">
+
+      <div style="flex:1; min-width:280px; margin-bottom:1rem;">
+        <h3 style="color:#C1272D; font-family:'Poppins',sans-serif; margin-bottom:0.4rem;">
+          SocialNLP Lab
+        </h3>
+        <p style="color:#5b3a3a; font-size:0.95rem; margin:0;">
+
+        </p>
+      </div>
+
+      <!-- CENTER (Map) -->
+      <div class="footer-center">
+        <a href="https://info.flagcounter.com/Cff0" target="_blank" rel="noopener noreferrer">
+
+          <img
+            src="https://s05.flagcounter.com/count2/Cff0/bg_FFFFFF/txt_000000/border_FFFEFC/columns_5/maxflags_50/viewers_3/labels_0/pageviews_0/flags_0/percent_0/"
+            alt="Flag Counter" class="footer-map">
+
+        </a>
+      </div>
+
+      <style>
+        .footer-center {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .footer-map {
+          width: 260px;
+          max-width: 100%;
+          height: auto;
+          opacity: 0.95;
+          transition: opacity 0.3s ease;
+          border: none;
+        }
+
+        .footer-map:hover {
+          opacity: 1;
+        }
+      </style>
+
+      <div style="text-align:right; flex:1; min-width:260px;">
+        <p style="color:#4b1d26; font-size:0.9rem; margin:0;">
+          © <span id="year"></span> SocialNLP Lab, Macquarie University. All rights reserved.
+        </p>
+        <p style="margin-top:0.3rem;">
+          <a href="#top" style="text-decoration:none; color:#C1272D; font-weight:600; transition:color 0.3s;">
+            Back to top ↑
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // Auto-update footer year
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </footer>
+
+
+  <script>
+    // set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html>
